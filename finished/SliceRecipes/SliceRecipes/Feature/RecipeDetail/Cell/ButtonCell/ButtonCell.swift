@@ -12,7 +12,7 @@ final class ButtonCell: UITableViewCell {
     }
     
     // MARK: - Properties
-    private var buttonCellModel: ButtonElementModel!
+    private var buttonCellModel: ButtonElement!
     
     // MARK: - UI
     private lazy var markAsReadButton: UIButton = {
@@ -44,9 +44,9 @@ final class ButtonCell: UITableViewCell {
     
 }
 
-extension ButtonCell: RecipeCellElement {
-    func configure(withModel model: RecipeCellElementModel) {
-        guard let model = model as? ButtonElementModel else { return }
+extension ButtonCell: RecipeCell {
+    func configure(withModel model: RecipeCellElement) {
+        guard let model = model as? ButtonElement else { return }
         
         self.buttonCellModel = model
         markAsReadButton.setTitle(self.buttonCellModel.title, for: .normal)

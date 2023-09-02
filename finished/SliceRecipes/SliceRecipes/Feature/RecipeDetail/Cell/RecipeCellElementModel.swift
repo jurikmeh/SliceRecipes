@@ -1,5 +1,5 @@
 import Foundation
 
-protocol RecipeCellElementModel: AnyObject {
-    var type: RecipeCell { get }
+protocol RecipeCellElement {
+    var kind: RecipeCellKind { get }
 }

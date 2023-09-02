@@ -5,5 +5,5 @@ protocol RecipeDetailViewModel {
     var count: Int { get }
     
     func markAsRead(_ recipe: Item)
-    func getCellElementModelArray(at index: Int) -> RecipeCellElementModel
+    func getCellElementModelArray(at index: Int) -> RecipeCellElement
 }

@@ -24,14 +24,15 @@ final class RecipeListViewModelImpl: RecipeListViewModel {
     func getRecipe(atIndex index: Int) -> Item { items[index] }
     
     func fetchRecipes() {
-        recipeService.fetchRecipes() { [weak self] result in
+        recipeService.fetchRecipes() { [weak self] completion in
             DispatchQueue.main.async {
-                switch result {
+                switch completion {
                 case .success(let itemList):
                     self?.items = itemList.results
                     self?.onReload?()
                 case .failure(let error):
                     self?.navigator?.presentError(error: error)
+                    self?.onReload?()
                 }
             }
         }
@@ -44,7 +45,10 @@ final class RecipeListViewModelImpl: RecipeListViewModel {
     func didMarkRecipe(_ recipe: Item) {
         guard let recipeIndex = items.firstIndex(where: { $0.canonical_id == recipe.canonical_id }) else { return }
         items.remove(at: recipeIndex)
-        onMarkAsRead?(recipeIndex)
+        
+        DispatchQueue.main.async {
+            self.onMarkAsRead?(recipeIndex)
+        }
     }
     
 }

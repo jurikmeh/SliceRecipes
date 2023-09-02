@@ -42,8 +42,8 @@ extension RecipeDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cellElementModel = viewModel?.getCellElementModelArray(at: indexPath.row) else { return UITableViewCell() }
-        let cellElementModelIdentifier = cellElementModel.type.cellIdentifier
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellElementModelIdentifier, for: indexPath) as? RecipeCellElement else { return UITableViewCell() }
+        let cellElementModelIdentifier = cellElementModel.kind.cellIdentifier
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellElementModelIdentifier, for: indexPath) as? RecipeCell else { return UITableViewCell() }
         cell.configure(withModel: cellElementModel)
         
         return cell as! UITableViewCell

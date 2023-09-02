@@ -10,7 +10,7 @@ final class RecipeDetailViewModelImpl: RecipeDetailViewModel {
     private let recipe: Item
     private weak var navigator: RecipeListNavigator?
     private weak var delegate: RecipeDetailViewModelDelegate?
-    private var cellElementModelArray: [RecipeCellElementModel] = []
+    private var cellElementModelArray: [RecipeCellElement] = []
     
     var count: Int { recipe.instructions.isEmpty ? 3 : 4 }
     var recipeName: String? { recipe.name }
@@ -21,17 +21,17 @@ final class RecipeDetailViewModelImpl: RecipeDetailViewModel {
         self.delegate = delegate
         self.recipe = recipe
         self.cellElementModelArray = [
-            ButtonElementModel(title: "Mark as read") { [weak self] in self?.markAsRead(recipe) },
-            LabelElementModel(title: "Total time", description: "\(recipe.total_time_minutes ?? 0) mins"),
-            LabelElementModel(title: "Cook time", description: "\(recipe.cook_time_minutes ?? 0) mins"),
-            InstructionElementModel(instructions: recipe.instructions)
+            ButtonElement(title: "Mark as read") { [weak self] in self?.markAsRead(recipe) },
+            LabelElement(title: "Total time", description: "\(recipe.total_time_minutes ?? 0) mins"),
+            LabelElement(title: "Cook time", description: "\(recipe.cook_time_minutes ?? 0) mins"),
+            InstructionElement(instructions: recipe.instructions)
         ]
     }
     
 }
 
 extension RecipeDetailViewModelImpl {
-    func getCellElementModelArray(at index: Int) -> RecipeCellElementModel { return cellElementModelArray[index] }
+    func getCellElementModelArray(at index: Int) -> RecipeCellElement { return cellElementModelArray[index] }
 }
 
 // MARK: - Extension

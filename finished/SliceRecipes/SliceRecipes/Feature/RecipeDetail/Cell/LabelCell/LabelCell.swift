@@ -12,7 +12,7 @@ final class LabelCell: UITableViewCell {
     }
     
     // MARK: - Properties
-    private var labelCellModel: LabelElementModel!
+    private var labelCellModel: LabelElement!
     
     // MARK: - UI
     private lazy var titleLabel: UILabel = {
@@ -41,9 +41,9 @@ final class LabelCell: UITableViewCell {
     
 }
 
-extension LabelCell: RecipeCellElement {
-    func configure(withModel model: RecipeCellElementModel) {
-        guard let model = model as? LabelElementModel else { return }
+extension LabelCell: RecipeCell {
+    func configure(withModel model: RecipeCellElement) {
+        guard let model = model as? LabelElement else { return }
         
         self.labelCellModel = model
         configureViews(title: self.labelCellModel.title, description: self.labelCellModel.description)

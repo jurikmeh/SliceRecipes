@@ -10,7 +10,7 @@ final class InstructionCell: UITableViewCell {
     }
     
     // MARK: - Properties
-    private var instructionCellModel: InstructionElementModel!
+    private var instructionCellModel: InstructionElement!
     
     // MARK: - UI
     private lazy var preparationLabel: UILabel = {
@@ -39,9 +39,9 @@ final class InstructionCell: UITableViewCell {
     
 }
 
-extension InstructionCell: RecipeCellElement {
-    func configure(withModel model: RecipeCellElementModel) {
-        guard let model = model as? InstructionElementModel else { return }
+extension InstructionCell: RecipeCell {
+    func configure(withModel model: RecipeCellElement) {
+        guard let model = model as? InstructionElement else { return }
         self.instructionCellModel = model
         
         let instructions = self.instructionCellModel.instructions.enumerated().map { index, instruction in
