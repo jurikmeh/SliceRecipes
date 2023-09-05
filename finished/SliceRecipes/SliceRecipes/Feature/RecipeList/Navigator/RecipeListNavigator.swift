@@ -18,7 +18,7 @@ final class RecipeListNavigator {
         
         let recipeListViewController = RecipeListViewController()
         self.navigationController = UINavigationController(rootViewController: recipeListViewController)
-        let recipeListViewModel = RecipeListViewModelImpl(navigator: self, recipeService: diContainer.resolve())
+        let recipeListViewModel = RecipeListViewModelImpl(navigator: self, recipeFacade: diContainer.resolve())
         recipeListViewController.viewModel = recipeListViewModel
     }
     

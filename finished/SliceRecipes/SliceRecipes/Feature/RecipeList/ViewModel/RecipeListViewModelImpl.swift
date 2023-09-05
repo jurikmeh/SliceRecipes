@@ -3,7 +3,7 @@ import Foundation
 final class RecipeListViewModelImpl: RecipeListViewModel {
     
     // MARK: - Properties
-    private let recipeService: RecipeService
+    private let recipeFacade: RecipeFacade
     private weak var navigator: RecipeListNavigator?
     private(set) var items: [Item]
     
@@ -14,9 +14,9 @@ final class RecipeListViewModelImpl: RecipeListViewModel {
     var onMarkAsRead: ((Int) -> Void)?
     
     // MARK: - Init
-    init(navigator: RecipeListNavigator, recipeService: RecipeService, items: [Item] = []) {
+    init(navigator: RecipeListNavigator, recipeFacade: RecipeFacade, items: [Item] = []) {
         self.navigator = navigator
-        self.recipeService = recipeService
+        self.recipeFacade = recipeFacade
         self.items = items
     }
     
@@ -24,7 +24,7 @@ final class RecipeListViewModelImpl: RecipeListViewModel {
     func getRecipe(atIndex index: Int) -> Item { items[index] }
     
     func fetchRecipes() {
-        recipeService.fetchRecipes() { [weak self] completion in
+        recipeFacade.fetchRecipes() { [weak self] completion in
             DispatchQueue.main.async {
                 switch completion {
                 case .success(let itemList):

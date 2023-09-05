@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: - Use `data.json` file if something goes wrong
-
 final class NetworkServiceImpl: NetworkService {
     private let session: URLSession
     private let getApiHostUseCase: GetApiHostUseCase
